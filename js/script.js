@@ -34,11 +34,11 @@ $('#design').change(() => {
 $('.activities input[type="checkbox"]').on('change', (event) => {
 	
 	// target check boxes for 9am workshops
-	if($(event.target).parent()[0].textContent.includes('9am')) {
+	if($(event.target).parent()[0].textContent.includes('Tuesday 9am')) {
 		// disable check boxes
 		$('.activities input').each((index, element) => {	
 				if (!($('.activities input[type="checkbox"]')[index].checked) &&  $
-				(element).parent()[0].textContent.includes('9am')) {
+				(element).parent()[0].textContent.includes('Tuesday 9am')) {
 				$(element).attr('disabled', true);
 				$(element).parent().css('text-decoration', 'line-through');
 				$(element).parent().css('color', '#696969');
@@ -48,7 +48,7 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 		if(!$(event.target).is(':checked')) {
 			$('.activities input').each((index, element) => {
 				if($
-					(element).parent()[0].textContent.includes('9am')) {
+					(element).parent()[0].textContent.includes('Tuesday 9am')) {
 					$(element).attr('disabled', false);
 					$(element).parent().css('text-decoration', 'none');
 				  $(element).parent().css('color', '#000');
@@ -56,10 +56,10 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 			})			
 		}
 		// target check boxes for 1pm workshops
-	}	else if ($(event.target).parent()[0].textContent.includes('1pm')) {
+	}	else if ($(event.target).parent()[0].textContent.includes('Tuesday 1pm')) {
 		// disable check boxes
 		$('.activities input').each((index, element) => {
-			if (!($('.activities input[type="checkbox"]')[index].checked) &&  $(element).parent()[0].textContent.includes('1pm')) {
+			if (!($('.activities input[type="checkbox"]')[index].checked) &&  $(element).parent()[0].textContent.includes('Tuesday 1pm')) {
 				$(element).attr('disabled', true);
 				$(element).parent().css('text-decoration', 'line-through');
 				$(element).parent().css('color', '#696969');
@@ -69,7 +69,7 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 		if(!$(event.target).is(':checked')) {
 			$('.activities input').each((index, element) => {
 				if($
-					(element).parent()[0].textContent.includes('1pm')) {
+					(element).parent()[0].textContent.includes('Tuesday 1pm')) {
 					$(element).attr('disabled', false);
 					$(element).parent().css('text-decoration', 'none');
 				  $(element).parent().css('color', '#000');
