@@ -40,8 +40,8 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 				if (!($('.activities input[type="checkbox"]')[index].checked) &&  $
 				(element).parent()[0].textContent.includes('9am')) {
 				$(element).attr('disabled', true);
-				//console.log(element);
-				// $(element).textContent.css('color', 'red');
+				$(element).parent().css('text-decoration', 'line-through');
+				$(element).parent().css('color', '#696969');
 			}
 		})
 		// enable check boxes
@@ -50,6 +50,8 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 				if($
 					(element).parent()[0].textContent.includes('9am')) {
 					$(element).attr('disabled', false);
+					$(element).parent().css('text-decoration', 'none');
+				  $(element).parent().css('color', '#000');
 				}
 			})			
 		}
@@ -59,6 +61,8 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 		$('.activities input').each((index, element) => {
 			if (!($('.activities input[type="checkbox"]')[index].checked) &&  $(element).parent()[0].textContent.includes('1pm')) {
 				$(element).attr('disabled', true);
+				$(element).parent().css('text-decoration', 'line-through');
+				$(element).parent().css('color', '#696969');
 			}
 		})
 		// enable check boxes
@@ -67,6 +71,8 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 				if($
 					(element).parent()[0].textContent.includes('1pm')) {
 					$(element).attr('disabled', false);
+					$(element).parent().css('text-decoration', 'none');
+				  $(element).parent().css('color', '#000');
 				}
 			})
 		}
