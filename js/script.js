@@ -30,3 +30,45 @@ $('#design').change(() => {
 	}
 })
 
+// Disable and enable check boxes
+$('.activities input[type="checkbox"]').on('change', (event) => {
+	
+	// target check boxes for 9am workshops
+	if($(event.target).parent()[0].textContent.includes('9am')) {
+		// disable check boxes
+		$('.activities input').each((index, element) => {	
+				if (!($('.activities input[type="checkbox"]')[index].checked) &&  $
+				(element).parent()[0].textContent.includes('9am')) {
+				$(element).attr('disabled', true);
+				//console.log(element);
+				// $(element).textContent.css('color', 'red');
+			}
+		})
+		// enable check boxes
+		if(!$(event.target).is(':checked')) {
+			$('.activities input').each((index, element) => {
+				if($
+					(element).parent()[0].textContent.includes('9am')) {
+					$(element).attr('disabled', false);
+				}
+			})			
+		}
+		// target check boxes for 1pm workshops
+	}	else if ($(event.target).parent()[0].textContent.includes('1pm')) {
+		// disable check boxes
+		$('.activities input').each((index, element) => {
+			if (!($('.activities input[type="checkbox"]')[index].checked) &&  $(element).parent()[0].textContent.includes('1pm')) {
+				$(element).attr('disabled', true);
+			}
+		})
+		// enable check boxes
+		if(!$(event.target).is(':checked')) {
+			$('.activities input').each((index, element) => {
+				if($
+					(element).parent()[0].textContent.includes('1pm')) {
+					$(element).attr('disabled', false);
+				}
+			})
+		}
+	}	
+})
