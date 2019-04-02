@@ -155,12 +155,4 @@ $('#payment').on('change', (event) => {
 	let $paymentOption = $('#payment option:selected').val();
 	console.log($paymentOption);	
 	displayPayment[$paymentOption]();
-	// if ($paymentOption !== 'credit card') {
-	// 	$('#credit-card').hide();
-	// 	$('fieldset div p').hide();
-	// 	displayPayment[$paymentOption]();
-	// } else {
-	// 	$('#credit-card').show();
-	// 	$('fieldset div p').hide();
-	// }
 })
