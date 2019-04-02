@@ -120,3 +120,47 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 		console.log(total);
 
 })
+
+// get PayPal and Bitcoin paragraphs
+const $bitcoinPayPal = $('fieldset div p');
+// store individual paragraphs
+const $payPal = $bitcoinPayPal[0];
+const $bitcoin = $bitcoinPayPal[1];
+// hide Bitcoin and PayPal messages
+$('fieldset div p').hide();
+
+// Credit Card as default
+// $('#payment option:nth-child(2)').attr('selected', true);
+// payment information methods
+const displayPayment = {
+	"credit card": () => {
+		$('fieldset div p').hide();
+		$('#credit-card').show();
+	},
+	paypal: () => {
+		$('fieldset div p').hide();
+		$('#credit-card').hide();
+		$($payPal).show();
+	}, 
+	bitcoin: () => {
+		$('fieldset div p').hide();
+		$('#credit-card').hide();
+		$($bitcoin).show();
+	}
+}
+
+// Display correct payment option information
+$('#payment').on('change', (event) => {
+	// store selected payment option
+	let $paymentOption = $('#payment option:selected').val();
+	console.log($paymentOption);	
+	displayPayment[$paymentOption]();
+	// if ($paymentOption !== 'credit card') {
+	// 	$('#credit-card').hide();
+	// 	$('fieldset div p').hide();
+	// 	displayPayment[$paymentOption]();
+	// } else {
+	// 	$('#credit-card').show();
+	// 	$('fieldset div p').hide();
+	// }
+})
