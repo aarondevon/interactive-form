@@ -1,5 +1,9 @@
+// total variable
 let total = 0;
-
+// add p element to show total
+$('.activities').append(`<p></p>`)
+// hide p element
+$('.activities p').hide();
 // Focus on name field on page load
 $('#name').focus();
 $('#other-title').hide();
@@ -51,6 +55,13 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 		total += cost;
 	} else {
 		total -= cost;
+	}
+	// show and hide total
+	if ((total !== 0)) {
+		$('.activities p').text(`$${total}`);
+		$('.activities p').show();
+	} else {
+		$('.activities p').hide();
 	}
 
 	// target check boxes for 9am workshops
