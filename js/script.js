@@ -45,6 +45,14 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
  }
 	console.log(cost);
 	console.log(day)
+ 	// Add and subtract to/from total
+	if ($(event.target).is(':checked')) {
+		console.log('I am checked');
+		total += cost;
+	} else {
+		total -= cost;
+	}
+
 	// target check boxes for 9am workshops
 	if($(event.target).parent()[0].textContent.includes('Tuesday 9am')) {
 		// disable check boxes
