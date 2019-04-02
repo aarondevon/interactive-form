@@ -149,6 +149,9 @@ const displayPayment = {
 	}
 }
 
+// hide select payment method from drop down menu
+$('#payment option:nth-child(1)').hide();
+
 // Display correct payment option information
 $('#payment').on('change', (event) => {
 	// store selected payment option
