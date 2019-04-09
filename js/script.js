@@ -173,10 +173,30 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
+function isValidName(name) {
+	return /^[a-z]+$/.test(name);
+}
+
 function isValidEmail(email) {
 	return /^[^@]+@[^@]+\.[a-z]+$/i.test(email);
 }
 
+
+// validate email
+const mail = $("label[for='mail']");
+const mailText = $("label[for='mail']").text();
+$('#mail').keyup(() => {	
+	mail.text(`${mailText} Enter valid email`);
+	if (!(isValidEmail($('#mail').val().trim()))) {
+		console.log('error');
+		$('#mail').addClass('alert-border');
+		mail.css('color', 'red');
+	} else {
+		$('#mail').removeClass('alert-border');
+		mail.css('color', 'black');
+		mail.text(mailText);
+	}
+})
 
 if ($('#name').val() === "") {
 	console.log($("label[for='name']").text("Field can't be blank"));
