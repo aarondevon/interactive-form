@@ -188,7 +188,7 @@ if ($('#name').val() === "") {
 const mail = $("label[for='mail']");
 const mailText = $("label[for='mail']").text();
 $('#mail').keyup(() => {	
-	mail.text(`${mailText} Field can't be blank`);
+	mail.text(`${mailText} Enter valid email`);
 	if (!(isValidEmail($('#mail').val().trim()))) {
 		console.log('error');
 		$('#mail').addClass('alert-border');
