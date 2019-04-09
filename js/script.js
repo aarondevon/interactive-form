@@ -173,35 +173,32 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
+// validate email
 function isValidName(name) {
 	return /^[a-z]+$/.test(name);
 }
 
-function isValidEmail(email) {
-	return /^[^@]+@[^@]+\.[a-z]+$/i.test(email);
-}
-
-
-// validate email
-const mail = $("label[for='mail']");
-const mailText = $("label[for='mail']").text();
-$('#mail').keyup(() => {	
-	mail.text(`${mailText} Enter valid email`);
-	if (!(isValidEmail($('#mail').val().trim()))) {
+const name = $("label[for='name']");
+const nameText = $("label[for='name']").text();
+$('#name').keyup(() => {	
+	name.text(`${nameText} Enter a valid name`);
+	if ($('#name').val().trim() === '') {
+		$('#name').addClass('alert-border');
+		name.css('color', 'red');
+		name.text(`${nameText} Field Can't Be Blank`);
+	} else if (!(isValidName($('#name').val().trim()))) {
 		console.log('error');
-		$('#mail').addClass('alert-border');
-		mail.css('color', 'red');
+		$('#name').addClass('alert-border');
+		name.css('color', 'red');
 	} else {
-		$('#mail').removeClass('alert-border');
-		mail.css('color', 'black');
-		mail.text(mailText);
+		$('#name').removeClass('alert-border');
+		name.css('color', 'black');
+		name.text(nameText);
 	}
 })
 
-if ($('#name').val() === "") {
-	console.log($("label[for='name']").text("Field can't be blank"));
-} else {
-	console.log(trimWhiteSpace($('#name').val()));
+function isValidEmail(email) {
+	return /^[^@]+@[^@]+\.[a-z]+$/i.test(email);
 }
 
 // validate email
