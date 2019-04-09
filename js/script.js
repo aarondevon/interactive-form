@@ -159,3 +159,50 @@ $('#payment').on('change', (event) => {
 	console.log($paymentOption);	
 	displayPayment[$paymentOption]();
 })
+
+
+
+// const alertBorder = (element) => {
+// 	$(element).css("border-color": "#C1E0FF", 
+// 	"border-width":"1px", 
+// 	"border-style":"solid");
+// }
+
+// trim unnecessary white space
+const trimWhiteSpace = (input) => {
+	return input.trim();
+}
+
+function isValidEmail(email) {
+	return /^[^@]+@[^@]+\.[a-z]+$/i.test(email);
+}
+
+
+if ($('#name').val() === "") {
+	console.log($("label[for='name']").text("Field can't be blank"));
+} else {
+	console.log(trimWhiteSpace($('#name').val()));
+}
+
+// validate email
+const mail = $("label[for='mail']");
+const mailText = $("label[for='mail']").text();
+$('#mail').keyup(() => {	
+	mail.text(`${mailText} Field can't be blank`);
+	if (!(isValidEmail($('#mail').val().trim()))) {
+		console.log('error');
+		$('#mail').addClass('alert-border');
+		mail.css('color', 'red');
+	} else {
+		$('#mail').removeClass('alert-border');
+		mail.css('color', 'black');
+		mail.text(mailText);
+	}
+})
+
+// prevent submission of form
+$('button[type="submit"]').click((event) => {
+	event.preventDefault();
+	console.log('prevented');
+})
+
