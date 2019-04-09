@@ -223,3 +223,17 @@ $('button[type="submit"]').click((event) => {
 	console.log('prevented');
 })
 
+// check if check box is checked
+const activities = $('.activities legend');
+const activitiesText = $('.activities legend').text();
+$('.activities').change(() => {
+	if ($('.activities input:checkbox:checked').length < 1) {
+		activities.text('At least one activity must be selected');
+		$('.activities').addClass('alert-border');
+		activities.css('color', 'red');
+	} else {
+		$('.activities').removeClass('alert-border');
+		activities.text(activitiesText);
+		activities.css('color', 'black');
+	}
+})
