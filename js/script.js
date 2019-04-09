@@ -257,20 +257,20 @@ $('.activities').change(() => {
 // }
 
 // credit card validation methods
-const creditCardValidation = {
-	'cc-num': (ccNum) => {
-		ccNum = ccNum.replace(/\s|-/g,"");
-	  return /^\d{13,16}$/.test(ccNum);
-	},
-	zip: (zip) => {
-		zip = zip.replace(/\s|-/g,"");
-	  return /^\d{5,5}$/.test(zip);
-	},
-	cvv: (cvv) => {
-		cvv = cvv.replace(/\s|-/g,"");
-	  return /^\d{3,3}$/.test(cvv);
-	}
-};
+// const creditCardValidation = {
+// 	'cc-num': (ccNum) => {
+// 		ccNum = ccNum.replace(/\s|-/g,"");
+// 	  return /^\d{13,16}$/.test(ccNum);
+// 	},
+// 	zip: (zip) => {
+// 		zip = zip.replace(/\s|-/g,"");
+// 	  return /^\d{5,5}$/.test(zip);
+// 	},
+// 	cvv: (cvv) => {
+// 		cvv = cvv.replace(/\s|-/g,"");
+// 	  return /^\d{3,3}$/.test(cvv);
+// 	}
+// };
 
 $('#credit-card input').focus((event) => {
 	let $paymentOption = $('#payment option:selected').val();
