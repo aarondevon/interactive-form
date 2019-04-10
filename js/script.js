@@ -157,9 +157,9 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
-// validate email
+// validate Name
 function isValidName(name) {
-	return /^[a-z]+$/.test(name);
+	return /^[a-zA-z\s]+$/.test(name);
 }
 
 const name = $("label[for='name']");
@@ -167,15 +167,18 @@ const nameText = $("label[for='name']").text();
 $('#name').keyup(() => {	
 	name.text(`${nameText} Enter a valid name`);
 	if ($('#name').val().trim() === '') {
-		$('#name').addClass('alert-border');
+		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 		name.text(`${nameText} Field Can't Be Blank`);
-	} else if (!(isValidName($('#name').val().trim()))) {
-		console.log('error');
-		$('#name').addClass('alert-border');
+	} 
+	 if (!(isValidName($('#name').val().trim()))) {
+		console.log(isValidName($('#name').val().trim()));
+		console.log($('#name').val());
+		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 	} else {
-		$('#name').removeClass('alert-border');
+		console.log(isValidName($('#name').val().trim()));
+		$('#name').removeClass('alert-format');
 		name.css('color', 'black');
 		name.text(nameText);
 	}
@@ -192,10 +195,10 @@ $('#mail').keyup(() => {
 	mail.text(`${mailText} Enter valid email`);
 	if (!(isValidEmail($('#mail').val().trim()))) {
 		console.log('error');
-		$('#mail').addClass('alert-border');
+		$('#mail').addClass('alert-format');
 		mail.css('color', 'red');
 	} else {
-		$('#mail').removeClass('alert-border');
+		$('#mail').removeClass('alert-format');
 		mail.css('color', 'black');
 		mail.text(mailText);
 	}
@@ -207,10 +210,10 @@ const activitiesText = $('.activities legend').text();
 $('.activities').change(() => {
 	if ($('.activities input:checkbox:checked').length < 1) {
 		activities.text('At least one activity must be selected');
-		$('.activities').addClass('alert-border');
+		$('.activities').addClass('alert-format');
 		activities.css('color', 'red');
 	} else {
-		$('.activities').removeClass('alert-border');
+		$('.activities').removeClass('alert-format');
 		activities.text(activitiesText);
 		activities.css('color', 'black');
 	}
@@ -231,6 +234,29 @@ const creditCardValidation = {
 	  return /^\d{3,3}$/.test(cvv);
 	}
 };
+
+const creditCard = () => {
+	$('#credit-card input').focus((event) => {
+		let $paymentOption = $('#payment option:selected').val();
+		console.log(event.target);
+		console.log(event.target.id);
+		let $inputLabel = $(`label[for="${event.target.id}"]`)
+		const inputIdText = event.target.id;
+		const $inputID = $(`#${inputIdText}`);
+		$(event.target).keyup(() => {
+			if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
+				if (!(creditCardValidation[inputIdText]($inputID.val()))) {
+					console.log(creditCardValidation[inputIdText]($inputID.val()));
+					$inputLabel.css('color', 'red');
+					$inputID.addClass('alert-format');
+				}	else {
+					$inputID.removeClass('alert-format');
+					$inputLabel.css('color', 'black');
+				}
+			}
+		})
+	})
+}
 
 $('#credit-card input').focus((event) => {
 	let $paymentOption = $('#payment option:selected').val();
@@ -255,6 +281,44 @@ $('#credit-card input').focus((event) => {
 
 // prevent submission of form
 $('button[type="submit"]').click((event) => {
-	event.preventDefault();
+	// if () {
+	// 	event.preventDefault();
+	// } else {
+	// 	creditCard();
+	// }
+	if ($('#name').val().trim() === '') {
+		$('#name').addClass('alert-format');
+		name.css('color', 'red');
+		name.text(`${nameText} Field Can't Be Blank`);
+	} else if (!(isValidName($('#name').val().trim()))) {
+		console.log('error');
+		$('#name').addClass('alert-format');
+		name.css('color', 'red');
+	} else {
+		$('#name').removeClass('alert-format');
+		name.css('color', 'black');
+		name.text(nameText);
+	}
+	if (!(isValidEmail($('#mail').val().trim()))) {
+		console.log('error');
+		$('#mail').addClass('alert-format');
+		mail.css('color', 'red');
+	} else {
+		$('#mail').removeClass('alert-format');
+		mail.css('color', 'black');
+		mail.text(mailText);
+	}
+	if ($('.activities input:checkbox:checked').length < 1) {
+		activities.text('At least one activity must be selected');
+		$('.activities').addClass('alert-format');
+		activities.css('color', 'red');
+		event.preventDefault();
+	} else {
+		$('.activities').removeClass('alert-format');
+		activities.text(activitiesText);
+		activities.css('color', 'black');
+	}
+	
+	
 	console.log('prevented');
 })
