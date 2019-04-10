@@ -24,7 +24,6 @@ $('#design').change(() => {
 				$(value).hide();
 			}
 		})
-		//$('#other-title').show();	
 	} else if ($('#design option:selected').val() === 'heart js') {
 		$('#color option:nth-child(4)').attr('selected', true);
 		$('#color option').each((index, value)=> {
@@ -44,7 +43,6 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 	cost = parseInt(regexCost.exec($(event.target).parent()[0].textContent)[0]);
 	let day = regexDay.exec($(event.target).parent()[0].textContent);
 	if (!(day === null)) {
-		//day = regexDay.exec($(event.target).parent().textContent)[0];
 		day = day[0];
  }
 	console.log(cost);
@@ -113,10 +111,6 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 			})
 		}
 	} 
-		
-		// let cost = parseInt($(event.target).parent()[0].textContent.substr(-3));
-		// console.log(cost);
-		// total += cost;
 		console.log(total);
 
 })
@@ -129,8 +123,6 @@ const $bitcoin = $bitcoinPayPal[1];
 // hide Bitcoin and PayPal messages
 $('fieldset div p').hide();
 
-// Credit Card as default
-// $('#payment option:nth-child(2)').attr('selected', true);
 // payment information methods
 const displayPayment = {
 	"credit card": () => {
@@ -159,14 +151,6 @@ $('#payment').on('change', (event) => {
 	console.log($paymentOption);	
 	displayPayment[$paymentOption]();
 })
-
-
-
-// const alertBorder = (element) => {
-// 	$(element).css("border-color": "#C1E0FF", 
-// 	"border-width":"1px", 
-// 	"border-style":"solid");
-// }
 
 // trim unnecessary white space
 const trimWhiteSpace = (input) => {
@@ -217,12 +201,6 @@ $('#mail').keyup(() => {
 	}
 })
 
-// prevent submission of form
-$('button[type="submit"]').click((event) => {
-	event.preventDefault();
-	console.log('prevented');
-})
-
 // check if check box is checked
 const activities = $('.activities legend');
 const activitiesText = $('.activities legend').text();
@@ -238,39 +216,21 @@ $('.activities').change(() => {
 	}
 })
 
-// // validate cc number
-// function isValidCreditNum(cc) {
-// 	cc = cc.replace(/\s|-/g,"")
-// 	return /^\d{13,16}$/.test(cc);
-// }
-
-// // validate zip code
-// function isValidZip(zip) {
-// 	cc = cc.replace(/\s|-/g,"")
-// 	return /^\d{5,5}$/.test(cc);
-// }
-
-// // validate cvv number
-// function isValidCVV(cvv) {
-// 	cc = cc.replace(/\s|-/g,"")
-// 	return /^\d{3,3}$/.test(cc);
-// }
-
 // credit card validation methods
-// const creditCardValidation = {
-// 	'cc-num': (ccNum) => {
-// 		ccNum = ccNum.replace(/\s|-/g,"");
-// 	  return /^\d{13,16}$/.test(ccNum);
-// 	},
-// 	zip: (zip) => {
-// 		zip = zip.replace(/\s|-/g,"");
-// 	  return /^\d{5,5}$/.test(zip);
-// 	},
-// 	cvv: (cvv) => {
-// 		cvv = cvv.replace(/\s|-/g,"");
-// 	  return /^\d{3,3}$/.test(cvv);
-// 	}
-// };
+const creditCardValidation = {
+	'cc-num': (ccNum) => {
+		ccNum = ccNum.replace(/\s|-/g,"");
+	  return /^\d{13,16}$/.test(ccNum);
+	},
+	zip: (zip) => {
+		zip = zip.replace(/\s|-/g,"");
+	  return /^\d{5,5}$/.test(zip);
+	},
+	cvv: (cvv) => {
+		cvv = cvv.replace(/\s|-/g,"");
+	  return /^\d{3,3}$/.test(cvv);
+	}
+};
 
 $('#credit-card input').focus((event) => {
 	let $paymentOption = $('#payment option:selected').val();
@@ -283,58 +243,18 @@ $('#credit-card input').focus((event) => {
 		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
 			if (!(creditCardValidation[inputIdText]($inputID.val()))) {
 				console.log(creditCardValidation[inputIdText]($inputID.val()));
-				// $inputLabel.text('Enter a valid Card number');
 				$inputLabel.css('color', 'red');
 				$inputID.addClass('alert-format');
 			}	else {
 				$inputID.removeClass('alert-format');
 				$inputLabel.css('color', 'black');
-				// $inputLabel.text('Card Number:');
 			}
 		}
 	})
 })
 
-// credit card 
-// const ccNum = $('#cc-num');
-// let ccNumText = $('#cc-num').val();
-// const ccLabel = $('label[for="cc-num"]');
-// const ccLabelText = $('label[for="cc-num"]').text();
-// ccNum.keyup(() => {
-	// console.log($('#cc-num').val().replace(/-|\s/g,""));	
-	// console.log($('#cc-num').val().replace(/\D/g,""));	
-	// let $paymentOption = $('#payment option:selected').val();
-	// console.log($paymentOption);
-	// if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
-	// 	if (!(isValidCreditNum($('#cc-num').val()))) {
-	// 		ccLabel.text('Enter a valid Card number');
-	// 		ccNum.addClass('alert-border');
-	// 		ccNum.css('color', 'red');
-	// 		ccLabel.css('color', 'red');
-	// 	}	else {
-	// 		ccNum.removeClass('alert-border');
-	// 		ccNum.css('color', 'black');
-	// 		ccLabel.css('color', 'black');
-	// 		ccLabel.text(ccLabelText);
-	// 	}
-	// }
-	
-	
-	// if (!(isValidEmail($('#mail').val().trim()))) {
-	// 	console.log('error');
-
-	// } else {
-	// 	$('#mail').removeClass('alert-border');
-	// 	mail.css('color', 'black');
-	// 	mail.text(mailText);
-	// }
-//})
-
-// Display correct payment option information
-$('#payment').on('change', (event) => {
-	// store selected payment option
-	let $paymentOption = $('#payment option:selected').val();
-	if ($paymentOption === 'credit card')	{
-
-	}
+// prevent submission of form
+$('button[type="submit"]').click((event) => {
+	event.preventDefault();
+	console.log('prevented');
 })
