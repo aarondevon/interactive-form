@@ -290,10 +290,12 @@ $('button[type="submit"]').click((event) => {
 		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 		name.text(`${nameText} Field Can't Be Blank`);
+		event.preventDefault();
 	} else if (!(isValidName($('#name').val().trim()))) {
 		console.log('error');
 		$('#name').addClass('alert-format');
 		name.css('color', 'red');
+		event.preventDefault();
 	} else {
 		$('#name').removeClass('alert-format');
 		name.css('color', 'black');
@@ -303,6 +305,7 @@ $('button[type="submit"]').click((event) => {
 		console.log('error');
 		$('#mail').addClass('alert-format');
 		mail.css('color', 'red');
+		event.preventDefault();
 	} else {
 		$('#mail').removeClass('alert-format');
 		mail.css('color', 'black');
@@ -317,6 +320,26 @@ $('button[type="submit"]').click((event) => {
 		$('.activities').removeClass('alert-format');
 		activities.text(activitiesText);
 		activities.css('color', 'black');
+	}
+	const ccInputIDs = ['cc-num', 'zip', 'cvv'];
+	
+	let $paymentOption = $('#payment option:selected').val();
+	for (let i = 0; i < ccInputIDs.length; i++) {
+		let $inputLabel = $(`label[for="${ccInputIDs[i]}"]`);
+		//console.log($inputLabel);
+		console.log(ccInputIDs[i]);
+		let $inputID = $(`#${ccInputIDs[i]}`);	
+		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
+			if (!(creditCardValidation[ccInputIDs[i]]($inputID.val()))) {
+				//console.log(creditCardValidation[ccInputIDs[i]]($inputID.val()));
+				$inputLabel.css('color', 'red');
+				$inputID.addClass('alert-format');
+				event.preventDefault();
+			}	else {
+				$inputID.removeClass('alert-format');
+				$inputLabel.css('color', 'black');
+			}
+		}
 	}
 	
 	
