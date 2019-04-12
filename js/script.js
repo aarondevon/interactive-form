@@ -1,12 +1,13 @@
 // total variable
 let total = 0;
-// add p element to show total
-$('.activities').append(`<p></p>`)
-// hide p element
-$('.activities p').hide();
+
 // Focus on name field on page load
 $('#name').focus();
+
+// hide other job role input
 $('#other-title').hide();
+
+// show other input when other is selected
 $('#title').change(event => {
 	if ($('#title option:selected').val() === 'other') {
 		$('#other-title').show();	
@@ -14,6 +15,12 @@ $('#title').change(event => {
 		$('#other-title').hide();	
 	}
 })
+
+// add p element to show total
+$('.activities').append(`<p></p>`)
+// hide p element
+$('.activities p').hide();
+
 
 $('#design').change(() => {
 	if ($('#design option:selected').val() === 'js puns') {
@@ -45,11 +52,8 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 	if (!(day === null)) {
 		day = day[0];
  }
-	console.log(cost);
-	console.log(day)
  	// Add and subtract to/from total
 	if ($(event.target).is(':checked')) {
-		console.log('I am checked');
 		total += cost;
 	} else {
 		total -= cost;
@@ -111,8 +115,6 @@ $('.activities input[type="checkbox"]').on('change', (event) => {
 			})
 		}
 	} 
-		console.log(total);
-
 })
 
 // get PayPal and Bitcoin paragraphs
@@ -147,8 +149,7 @@ $('#payment option:nth-child(1)').hide();
 // Display correct payment option information
 $('#payment').on('change', (event) => {
 	// store selected payment option
-	let $paymentOption = $('#payment option:selected').val();
-	console.log($paymentOption);	
+	let $paymentOption = $('#payment option:selected').val();	
 	displayPayment[$paymentOption]();
 })
 
@@ -157,10 +158,7 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
-// validate Name
-function isValidName(name) {
-	return /^[a-zA-z\s]+$/.test(name);
-}
+
 
 const name = $("label[for='name']");
 const nameText = $("label[for='name']").text();
@@ -172,12 +170,10 @@ $('#name').keyup(() => {
 		name.text(`${nameText} Field Can't Be Blank`);
 	} 
 	 if (!(isValidName($('#name').val().trim()))) {
-		console.log(isValidName($('#name').val().trim()));
-		console.log($('#name').val());
 		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 	} else {
-		console.log(isValidName($('#name').val().trim()));
+
 		$('#name').removeClass('alert-format');
 		name.css('color', 'black');
 		name.text(nameText);
@@ -194,7 +190,6 @@ const mailText = $("label[for='mail']").text();
 $('#mail').keyup(() => {	
 	mail.text(`${mailText} Enter valid email`);
 	if (!(isValidEmail($('#mail').val().trim()))) {
-		console.log('error');
 		$('#mail').addClass('alert-format');
 		mail.css('color', 'red');
 	} else {
@@ -237,15 +232,12 @@ const creditCardValidation = {
 
 $('#credit-card input').focus((event) => {
 	let $paymentOption = $('#payment option:selected').val();
-	console.log(event.target);
-	console.log(event.target.id);
 	let $inputLabel = $(`label[for="${event.target.id}"]`)
 	const inputIdText = event.target.id;
 	const $inputID = $(`#${inputIdText}`);
 	$(event.target).keyup(() => {
 		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
 			if (!(creditCardValidation[inputIdText]($inputID.val()))) {
-				console.log(creditCardValidation[inputIdText]($inputID.val()));
 				$inputLabel.css('color', 'red');
 				$inputID.addClass('alert-format');
 			}	else {
@@ -266,7 +258,6 @@ $('button[type="submit"]').click((event) => {
 		event.preventDefault();
 		// Check if name is in correct format
 	} else if (!(isValidName($('#name').val().trim()))) {
-		console.log('error');
 		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 		event.preventDefault();
@@ -278,7 +269,6 @@ $('button[type="submit"]').click((event) => {
 	}
 	// check if email is in correct format
 	if (!(isValidEmail($('#mail').val().trim()))) {
-		console.log('error');
 		$('#mail').addClass('alert-format');
 		mail.css('color', 'red');
 		event.preventDefault();
