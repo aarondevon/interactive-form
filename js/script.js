@@ -173,7 +173,10 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
-
+// validate Name
+function isValidName(name) {
+	return /^[a-zA-z\s]+$/.test(name);
+}
 
 const name = $("label[for='name']");
 const nameText = $("label[for='name']").text();
