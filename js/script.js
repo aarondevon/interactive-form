@@ -36,9 +36,9 @@ const showTshirt = () => {
 // call function to hide T-shirt color option
 hideTshirt();
 
-$('#design').change(() => {
-	showTshirt();
-	if ($('#design option:selected').val() === 'js puns') {
+// methods to display correct T-shirt color selection
+const displayCorrectShirtColors = {
+	'js puns': () =>{
 		$('#color option:nth-child(1)').attr('selected', true);
 		$('#color option').each((index, value)=> {
 			$(value).show();
@@ -46,14 +46,27 @@ $('#design').change(() => {
 				$(value).hide();
 			}
 		})
-	} else if ($('#design option:selected').val() === 'heart js') {
+	},
+	'heart js': () => {
 		$('#color option:nth-child(4)').attr('selected', true);
 		$('#color option').each((index, value)=> {
 			$(value).show();
 			if (index <= 2) {
 				$(value).hide();
 			}
-		}) 
+		})
+	}
+}
+
+// Display correct T-shirt color selection
+$('#design').change(() => {
+	showTshirt();
+	// Display colors based T-shirt design selected
+	if ($('#design option:selected').attr('value') != undefined) {
+		displayCorrectShirtColors[$('#design option:selected').val()]();
+		// Hide color selection if Select Theme is selected
+	} else {
+		hideTshirt();
 	}
 })
 
