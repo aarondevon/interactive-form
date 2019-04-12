@@ -21,8 +21,23 @@ $('.activities').append(`<p></p>`)
 // hide p element
 $('.activities p').hide();
 
+// function hide T-shirt color option
+const hideTshirt = () => {
+	$('label[for="color"]').hide();
+	$('#color').hide();
+}
+
+// function show T-shirt color option
+const showTshirt = () => {
+	$('label[for="color"]').show();
+	$('#color').show();
+}
+
+// call function to hide T-shirt color option
+hideTshirt();
 
 $('#design').change(() => {
+	showTshirt();
 	if ($('#design option:selected').val() === 'js puns') {
 		$('#color option:nth-child(1)').attr('selected', true);
 		$('#color option').each((index, value)=> {
