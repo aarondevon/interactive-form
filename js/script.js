@@ -235,29 +235,6 @@ const creditCardValidation = {
 	}
 };
 
-const creditCard = () => {
-	$('#credit-card input').focus((event) => {
-		let $paymentOption = $('#payment option:selected').val();
-		console.log(event.target);
-		console.log(event.target.id);
-		let $inputLabel = $(`label[for="${event.target.id}"]`)
-		const inputIdText = event.target.id;
-		const $inputID = $(`#${inputIdText}`);
-		$(event.target).keyup(() => {
-			if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
-				if (!(creditCardValidation[inputIdText]($inputID.val()))) {
-					console.log(creditCardValidation[inputIdText]($inputID.val()));
-					$inputLabel.css('color', 'red');
-					$inputID.addClass('alert-format');
-				}	else {
-					$inputID.removeClass('alert-format');
-					$inputLabel.css('color', 'black');
-				}
-			}
-		})
-	})
-}
-
 $('#credit-card input').focus((event) => {
 	let $paymentOption = $('#payment option:selected').val();
 	console.log(event.target);
