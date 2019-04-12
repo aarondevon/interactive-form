@@ -281,67 +281,76 @@ $('#credit-card input').focus((event) => {
 
 // prevent submission of form
 $('button[type="submit"]').click((event) => {
-	// if () {
-	// 	event.preventDefault();
-	// } else {
-	// 	creditCard();
-	// }
+	// Check if name is blank
 	if ($('#name').val().trim() === '') {
 		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 		name.text(`${nameText} Field Can't Be Blank`);
 		event.preventDefault();
+		// Check if name is in correct format
 	} else if (!(isValidName($('#name').val().trim()))) {
 		console.log('error');
 		$('#name').addClass('alert-format');
 		name.css('color', 'red');
 		event.preventDefault();
+		// remove alert styling
 	} else {
 		$('#name').removeClass('alert-format');
 		name.css('color', 'black');
 		name.text(nameText);
 	}
+	// check if email is in correct format
 	if (!(isValidEmail($('#mail').val().trim()))) {
 		console.log('error');
 		$('#mail').addClass('alert-format');
 		mail.css('color', 'red');
 		event.preventDefault();
+		// remove alert styling
 	} else {
 		$('#mail').removeClass('alert-format');
 		mail.css('color', 'black');
 		mail.text(mailText);
 	}
+	// check if at least on check box is checked
 	if ($('.activities input:checkbox:checked').length < 1) {
 		activities.text('At least one activity must be selected');
 		$('.activities').addClass('alert-format');
 		activities.css('color', 'red');
 		event.preventDefault();
+		// remove alert styling
 	} else {
 		$('.activities').removeClass('alert-format');
 		activities.text(activitiesText);
 		activities.css('color', 'black');
 	}
+
+	// array of credit card input id text
 	const ccInputIDs = ['cc-num', 'zip', 'cvv'];
-	
+	// store the value of the payment option selected
 	let $paymentOption = $('#payment option:selected').val();
+
+	// loop through each credit card input
 	for (let i = 0; i < ccInputIDs.length; i++) {
+		// grab label for input
 		let $inputLabel = $(`label[for="${ccInputIDs[i]}"]`);
-		//console.log($inputLabel);
-		console.log(ccInputIDs[i]);
-		let $inputID = $(`#${ccInputIDs[i]}`);	
+		// store input id
+		let $inputID = $(`#${ccInputIDs[i]}`);
+		// check payment option selected	
 		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
+			// check for valid credit card data
 			if (!(creditCardValidation[ccInputIDs[i]]($inputID.val()))) {
-				//console.log(creditCardValidation[ccInputIDs[i]]($inputID.val()));
+				// set label style
 				$inputLabel.css('color', 'red');
+				// set input style
 				$inputID.addClass('alert-format');
+				// prevent submission of form
 				event.preventDefault();
 			}	else {
+				// remove alert styling from input
 				$inputID.removeClass('alert-format');
+				// remove alert styling from label
 				$inputLabel.css('color', 'black');
 			}
 		}
 	}
-	
-	
-	console.log('prevented');
 })
