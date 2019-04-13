@@ -199,29 +199,29 @@ const nameText = $("label[for='name']").text();
 $('#name').keyup(() => {
 	// check if name is empty		
 	if ($('#name').val().trim() === '') {
-		$(name).fadeOut(1000, () => {
+		$(name).fadeOut(500, () => {
 			name.css('color', 'red');
 			name.text(`${nameText} Field Can't Be Blank`);
-			$(name).fadeIn(1000, () => {
+			$(name).fadeIn(500, () => {
 				$('#name').addClass('alert-format');	
 			})
 		})
 		// check if name is valid
 	} else if (!(isValidName($('#name').val().trim()))) {
-		 $(name).fadeOut(1000, () => {
+		 $(name).fadeOut(500, () => {
 			name.css('color', 'red');
 			name.text(`${nameText} Enter a valid name`);
 			$('#name').addClass('alert-format');
-			$(name).fadeIn(1000, () => {
+			$(name).fadeIn(500, () => {
 			})
 		})
 		// remove alert styling		
 	} else {
-		$(name).fadeOut(1000, () => {
+		$(name).fadeOut(500, () => {
 			name.text(nameText);
 			name.css('color', 'black');
 			$('#name').removeClass('alert-format');
-			$(name).fadeIn(1000, () => {
+			$(name).fadeIn(500, () => {
 			})
 		})
 	}
