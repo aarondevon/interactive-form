@@ -221,10 +221,10 @@ const nameText = $("label[for='name']").text();
 $('#name').keyup(() => {
 	// check if name is empty		
 	if ($('#name').val().trim() === '') {
-		validationFade('#name', name, nameText, 'Name Field Can\'t Be Blank');
+		validationFade('#name', name, nameText, 'Empty');
 		// check if name is valid
 	} else if (!(isValidName($('#name').val().trim()))) {
-		validationFade('#name', name, nameText, 'Enter a valid name');
+		validationFade('#name', name, nameText, 'Invalid');
 		// remove alert styling		
 	} else {
 		validEntryFade('#name', name, nameText);
@@ -240,10 +240,10 @@ const mail = $("label[for='mail']");
 const mailText = $("label[for='mail']").text();
 $('#mail').keyup(() => {
 	if ($('#mail').val().trim() === '') {
-		validationFade('#mail', mail, mailText, 'Email Field Can\'t Be Blank');
+		validationFade('#mail', mail, mailText, 'Empty');
 	}	
 	else if (!(isValidEmail($('#mail').val().trim()))) {
-		validationFade('#mail', mail, mailText, 'Enter valid email');
+		validationFade('#mail', mail, mailText, 'Invalid');
 	} else {
 		validEntryFade('#mail', mail, mailText);
 	}
@@ -302,20 +302,20 @@ $('#credit-card input').focus((event) => {
 $('button[type="submit"]').click((event) => {
 		// check if name is empty		
 		if ($('#name').val().trim() === '') {
-			validationFade('#name', name, nameText, 'Name Field Can\'t Be Blank');
+			validationFade('#name', name, nameText, 'Empty');
 			// check if name is valid
 		} else if (!(isValidName($('#name').val().trim()))) {
-			validationFade('#name', name, nameText, 'Enter a valid name');
+			validationFade('#name', name, nameText, 'Invalid');
 			// remove alert styling		
 		} else {
 			validEntryFade('#name', name, nameText);
 		}
 	// check if email is in correct format
 	if ($('#mail').val().trim() === '') {
-		validationFade('#mail', mail, mailText, 'Email Field Can\'t Be Blank');
+		validationFade('#mail', mail, mailText, 'Empty');
 	}	
 	else if (!(isValidEmail($('#mail').val().trim()))) {
-		validationFade('#mail', mail, mailText, 'Enter valid email');
+		validationFade('#mail', mail, mailText, 'Invalid');
 	} else {
 		validEntryFade('#mail', mail, mailText);
 	}
