@@ -191,23 +191,39 @@ function isValidName(name) {
 	return /^[a-zA-z\s]+$/.test(name);
 }
 
+// Store name label
 const name = $("label[for='name']");
+// Store name label text
 const nameText = $("label[for='name']").text();
-$('#name').keyup(() => {	
-	name.text(`${nameText} Enter a valid name`);
+// handle real time validation
+$('#name').keyup(() => {
+	// check if name is empty		
 	if ($('#name').val().trim() === '') {
-		$('#name').addClass('alert-format');
-		name.css('color', 'red');
-		name.text(`${nameText} Field Can't Be Blank`);
-	} 
-	 if (!(isValidName($('#name').val().trim()))) {
-		$('#name').addClass('alert-format');
-		name.css('color', 'red');
+		$(name).fadeOut(1000, () => {
+			name.css('color', 'red');
+			name.text(`${nameText} Field Can't Be Blank`);
+			$(name).fadeIn(1000, () => {
+				$('#name').addClass('alert-format');	
+			})
+		})
+		// check if name is valid
+	} else if (!(isValidName($('#name').val().trim()))) {
+		 $(name).fadeOut(1000, () => {
+			name.css('color', 'red');
+			name.text(`${nameText} Enter a valid name`);
+			$('#name').addClass('alert-format');
+			$(name).fadeIn(1000, () => {
+			})
+		})
+		// remove alert styling		
 	} else {
-
-		$('#name').removeClass('alert-format');
-		name.css('color', 'black');
-		name.text(nameText);
+		$(name).fadeOut(1000, () => {
+			name.text(nameText);
+			name.css('color', 'black');
+			$('#name').removeClass('alert-format');
+			$(name).fadeIn(1000, () => {
+			})
+		})
 	}
 })
 
