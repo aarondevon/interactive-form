@@ -200,7 +200,7 @@ $('#name').keyup(() => {
 	// check if name is empty		
 	if ($('#name').val().trim() === '') {
 		$(name).fadeOut(500, () => {
-			name.css('color', 'red');
+			name.css('color', '#DE5F43');
 			name.text(`${nameText} Field Can't Be Blank`);
 			$(name).fadeIn(500, () => {
 				$('#name').addClass('alert-format');	
@@ -209,7 +209,7 @@ $('#name').keyup(() => {
 		// check if name is valid
 	} else if (!(isValidName($('#name').val().trim()))) {
 		 $(name).fadeOut(500, () => {
-			name.css('color', 'red');
+			name.css('color', '#DE5F43');
 			name.text(`${nameText} Enter a valid name`);
 			$('#name').addClass('alert-format');
 			$(name).fadeIn(500, () => {
@@ -238,7 +238,7 @@ $('#mail').keyup(() => {
 	mail.text(`${mailText} Enter valid email`);
 	if (!(isValidEmail($('#mail').val().trim()))) {
 		$('#mail').addClass('alert-format');
-		mail.css('color', 'red');
+		mail.css('color', '#DE5F43');
 	} else {
 		$('#mail').removeClass('alert-format');
 		mail.css('color', 'black');
@@ -253,7 +253,7 @@ $('.activities').change(() => {
 	if ($('.activities input:checkbox:checked').length < 1) {
 		activities.text('At least one activity must be selected');
 		$('.activities').addClass('alert-format');
-		activities.css('color', 'red');
+		activities.css('color', '#DE5F43');
 	} else {
 		$('.activities').removeClass('alert-format');
 		activities.text(activitiesText);
@@ -285,7 +285,7 @@ $('#credit-card input').focus((event) => {
 	$(event.target).keyup(() => {
 		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
 			if (!(creditCardValidation[inputIdText]($inputID.val()))) {
-				$inputLabel.css('color', 'red');
+				$inputLabel.css('color', '#DE5F43');
 				$inputID.addClass('alert-format');
 			}	else {
 				$inputID.removeClass('alert-format');
@@ -300,7 +300,7 @@ $('button[type="submit"]').click((event) => {
 	// Check if name is blank
 	if ($('#name').val().trim() === '') {
 		$('#name').addClass('alert-format');
-		name.css('color', 'red');
+		name.css('color', '#DE5F43');
 		name.text(`${nameText} Field Can't Be Blank`);
 		event.preventDefault();
 		// Check if name is in correct format
