@@ -186,6 +186,7 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
+// fade in alert 
 function validationFade(inputID, labelElement, originalText, additionText = '') {
 	$(labelElement).fadeOut(500, () => {
 		labelElement.css('color', '#DE5F43');
@@ -196,6 +197,7 @@ function validationFade(inputID, labelElement, originalText, additionText = '') 
 	})
 }
 
+// fade out alert
 function validEntryFade(inputID, labelElement, originalText) {
 	$(labelElement).fadeOut(500, () => {
 		labelElement.css('color', 'black');
