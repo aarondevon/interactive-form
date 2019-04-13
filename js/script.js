@@ -306,7 +306,7 @@ $('button[type="submit"]').click((event) => {
 		// Check if name is in correct format
 	} else if (!(isValidName($('#name').val().trim()))) {
 		$('#name').addClass('alert-format');
-		name.css('color', 'red');
+		name.css('color', '#DE5F43');
 		event.preventDefault();
 		// remove alert styling
 	} else {
@@ -317,7 +317,7 @@ $('button[type="submit"]').click((event) => {
 	// check if email is in correct format
 	if (!(isValidEmail($('#mail').val().trim()))) {
 		$('#mail').addClass('alert-format');
-		mail.css('color', 'red');
+		mail.css('color', '#DE5F43');
 		event.preventDefault();
 		// remove alert styling
 	} else {
@@ -329,7 +329,7 @@ $('button[type="submit"]').click((event) => {
 	if ($('.activities input:checkbox:checked').length < 1) {
 		activities.text('At least one activity must be selected');
 		$('.activities').addClass('alert-format');
-		activities.css('color', 'red');
+		activities.css('color', '#DE5F43');
 		event.preventDefault();
 		// remove alert styling
 	} else {
@@ -354,7 +354,7 @@ $('button[type="submit"]').click((event) => {
 			// check for valid credit card data
 			if (!(creditCardValidation[ccInputIDs[i]]($inputID.val()))) {
 				// set label style
-				$inputLabel.css('color', 'red');
+				$inputLabel.css('color', '#DE5F43');
 				// set input style
 				$inputID.addClass('alert-format');
 				// prevent submission of form
