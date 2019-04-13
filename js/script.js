@@ -186,6 +186,16 @@ const trimWhiteSpace = (input) => {
 	return input.trim();
 }
 
+function validationFade(inputID, labelElement, originalText, additionText = '') {
+	$(labelElement).fadeOut(500, () => {
+		labelElement.css('color', '#DE5F43');
+		labelElement.text(`${originalText} ${additionText}`);
+		$(labelElement).fadeIn(500, () => {
+			$(inputID).addClass('alert-format');	
+		})
+	})
+}
+
 // validate Name
 function isValidName(name) {
 	return /^[a-zA-z\s]+$/.test(name);
@@ -199,22 +209,10 @@ const nameText = $("label[for='name']").text();
 $('#name').keyup(() => {
 	// check if name is empty		
 	if ($('#name').val().trim() === '') {
-		$(name).fadeOut(500, () => {
-			name.css('color', '#DE5F43');
-			name.text(`${nameText} Field Can't Be Blank`);
-			$(name).fadeIn(500, () => {
-				$('#name').addClass('alert-format');	
-			})
-		})
+		validationFade('#name', name, nameText, 'Name Field Can\'t Be Blank');
 		// check if name is valid
 	} else if (!(isValidName($('#name').val().trim()))) {
-		 $(name).fadeOut(500, () => {
-			name.css('color', '#DE5F43');
-			name.text(`${nameText} Enter a valid name`);
-			$('#name').addClass('alert-format');
-			$(name).fadeIn(500, () => {
-			})
-		})
+		validationFade('#name', name, nameText, 'Enter a valid name');
 		// remove alert styling		
 	} else {
 		$(name).fadeOut(500, () => {
@@ -234,11 +232,12 @@ function isValidEmail(email) {
 // validate email
 const mail = $("label[for='mail']");
 const mailText = $("label[for='mail']").text();
-$('#mail').keyup(() => {	
-	mail.text(`${mailText} Enter valid email`);
-	if (!(isValidEmail($('#mail').val().trim()))) {
-		$('#mail').addClass('alert-format');
-		mail.css('color', '#DE5F43');
+$('#mail').keyup(() => {
+	if ($('#mail').val().trim() === '') {
+		validationFade('#mail', mail, mailText, 'Email Field Can\'t Be Blank');
+	}	
+	else if (!(isValidEmail($('#mail').val().trim()))) {
+		validationFade('#mail', mail, mailText, 'Enter valid email');
 	} else {
 		$('#mail').removeClass('alert-format');
 		mail.css('color', 'black');
