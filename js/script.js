@@ -196,6 +196,16 @@ function validationFade(inputID, labelElement, originalText, additionText = '') 
 	})
 }
 
+function validEntryFade(inputID, labelElement, originalText) {
+	$(labelElement).fadeOut(500, () => {
+		labelElement.css('color', 'black');
+		labelElement.text(`${originalText}`);
+		$(labelElement).fadeIn(500, () => {
+			$(inputID).removeClass('alert-format');	
+		})
+	})
+}
+
 // validate Name
 function isValidName(name) {
 	return /^[a-zA-z\s]+$/.test(name);
@@ -215,13 +225,7 @@ $('#name').keyup(() => {
 		validationFade('#name', name, nameText, 'Enter a valid name');
 		// remove alert styling		
 	} else {
-		$(name).fadeOut(500, () => {
-			name.text(nameText);
-			name.css('color', 'black');
-			$('#name').removeClass('alert-format');
-			$(name).fadeIn(500, () => {
-			})
-		})
+		validEntryFade('#name', name, nameText);
 	}
 })
 
@@ -239,9 +243,7 @@ $('#mail').keyup(() => {
 	else if (!(isValidEmail($('#mail').val().trim()))) {
 		validationFade('#mail', mail, mailText, 'Enter valid email');
 	} else {
-		$('#mail').removeClass('alert-format');
-		mail.css('color', 'black');
-		mail.text(mailText);
+		validEntryFade('#mail', mail, mailText);
 	}
 })
 
@@ -296,33 +298,24 @@ $('#credit-card input').focus((event) => {
 
 // prevent submission of form
 $('button[type="submit"]').click((event) => {
-	// Check if name is blank
-	if ($('#name').val().trim() === '') {
-		$('#name').addClass('alert-format');
-		name.css('color', '#DE5F43');
-		name.text(`${nameText} Field Can't Be Blank`);
-		event.preventDefault();
-		// Check if name is in correct format
-	} else if (!(isValidName($('#name').val().trim()))) {
-		$('#name').addClass('alert-format');
-		name.css('color', '#DE5F43');
-		event.preventDefault();
-		// remove alert styling
-	} else {
-		$('#name').removeClass('alert-format');
-		name.css('color', 'black');
-		name.text(nameText);
-	}
+		// check if name is empty		
+		if ($('#name').val().trim() === '') {
+			validationFade('#name', name, nameText, 'Name Field Can\'t Be Blank');
+			// check if name is valid
+		} else if (!(isValidName($('#name').val().trim()))) {
+			validationFade('#name', name, nameText, 'Enter a valid name');
+			// remove alert styling		
+		} else {
+			validEntryFade('#name', name, nameText);
+		}
 	// check if email is in correct format
-	if (!(isValidEmail($('#mail').val().trim()))) {
-		$('#mail').addClass('alert-format');
-		mail.css('color', '#DE5F43');
-		event.preventDefault();
-		// remove alert styling
+	if ($('#mail').val().trim() === '') {
+		validationFade('#mail', mail, mailText, 'Email Field Can\'t Be Blank');
+	}	
+	else if (!(isValidEmail($('#mail').val().trim()))) {
+		validationFade('#mail', mail, mailText, 'Enter valid email');
 	} else {
-		$('#mail').removeClass('alert-format');
-		mail.css('color', 'black');
-		mail.text(mailText);
+		validEntryFade('#mail', mail, mailText);
 	}
 	// check if at least on check box is checked
 	if ($('.activities input:checkbox:checked').length < 1) {
