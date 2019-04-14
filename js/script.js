@@ -283,6 +283,14 @@ const creditCardValidation = {
 	}
 };
 
+// Store original label text for credit card inputs
+const inputAndLabelData = {
+	'label[for="cc-num"]': $('label[for="cc-num"]').text(),
+	'label[for="zip"]': $('label[for="zip"]').text(),
+	'label[for="cvv"]': $('label[for="cvv"]').text()
+};
+
+// get input ids and validate focused input
 $('#credit-card input').focus((event) => {
 	let $paymentOption = $('#payment option:selected').val();
 	let $inputLabel = $(`label[for="${event.target.id}"]`)
@@ -290,12 +298,12 @@ $('#credit-card input').focus((event) => {
 	const $inputID = $(`#${inputIdText}`);
 	$(event.target).keyup(() => {
 		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
-			if (!(creditCardValidation[inputIdText]($inputID.val()))) {
-				$inputLabel.css('color', '#DE5F43');
-				$inputID.addClass('alert-format');
+			if ($inputID.val().trim() === '') {
+				validationFade($inputID, $inputLabel, inputAndLabelData[`label[for="${event.target.id}"]`], 'Empty');
+			} else if (!(creditCardValidation[inputIdText]($inputID.val()))) {
+				validationFade($inputID, $inputLabel, inputAndLabelData[`label[for="${event.target.id}"]`], 'Invalid');
 			}	else {
-				$inputID.removeClass('alert-format');
-				$inputLabel.css('color', 'black');
+				validEntryFade($inputID, $inputLabel, inputAndLabelData[`label[for="${event.target.id}"]`]);
 			}
 		}
 	})
