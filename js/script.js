@@ -357,12 +357,17 @@ $('button[type="submit"]').click((event) => {
 		// check payment option selected	
 		if ($paymentOption === 'credit card' || $paymentOption === 'select_method')	{
 			// check for valid credit card data
-			if (!(creditCardValidation[ccInputIDs[i]]($inputID.val()))) {
+			if ($inputID.val() === '') {
 				// set label style
-				$inputLabel.css('color', '#DE5F43');
 				// set input style
-				$inputID.addClass('alert-format');
-				// prevent submission of form
+				validationFade($inputID, $inputLabel, inputAndLabelData[`label[for="${ccInputIDs[i]}"]`], 'Empty');
+				//prevent submission of form
+				event.preventDefault();
+			} else if (!(creditCardValidation[ccInputIDs[i]]($inputID.val()))) {
+				// set label style
+				// set input style
+				validationFade($inputID, $inputLabel, inputAndLabelData[`label[for="${ccInputIDs[i]}"]`], 'Invalid');
+				//prevent submission of form
 				event.preventDefault();
 			}	else {
 				// remove alert styling from input
