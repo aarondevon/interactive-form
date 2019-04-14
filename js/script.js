@@ -184,11 +184,6 @@ $('#payment').on('change', (event) => {
 	displayPayment[$paymentOption]();
 })
 
-// trim unnecessary white space
-const trimWhiteSpace = (input) => {
-	return input.trim();
-}
-
 // fade in alert when missing or invalid data is entered
 function validationFade(inputID, labelElement, originalText, additionText = '') {
 	$(labelElement).fadeOut(500, () => {
@@ -211,7 +206,7 @@ function validEntryFade(inputID, labelElement, originalText) {
 	})
 }
 
-// validate Name
+// name validation function
 function isValidName(name) {
 	return /^[a-zA-z\s]+$/.test(name);
 }
@@ -234,6 +229,7 @@ $('#name').keyup(() => {
 	}
 })
 
+// email validation function
 function isValidEmail(email) {
 	return /^[^@]+@[^@]+\.[a-z]+$/i.test(email);
 }
